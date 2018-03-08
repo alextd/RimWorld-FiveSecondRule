@@ -10,7 +10,7 @@ namespace Five_Second_Rule
 		public Mod(ModContentPack content) : base(content)
 		{
 			// initialize settings
-			GetSettings<Settings>();
+			//GetSettings<Settings>();
 #if DEBUG
 			HarmonyInstance.DEBUG = true;
 #endif
@@ -18,15 +18,15 @@ namespace Five_Second_Rule
 			harmony.PatchAll(Assembly.GetExecutingAssembly());
 		}
 
-		public override void DoSettingsWindowContents(Rect inRect)
-		{
-			base.DoSettingsWindowContents(inRect);
-			GetSettings<Settings>().DoWindowContents(inRect);
-		}
+		//public override void DoSettingsWindowContents(Rect inRect)
+		//{
+		//	base.DoSettingsWindowContents(inRect);
+		//	GetSettings<Settings>().DoWindowContents(inRect);
+		//}
 
-		public override string SettingsCategory()
-		{
-			return "Five Second Rule";
-		}
+		//public override string SettingsCategory()
+		//{
+		//	return "Five Second Rule";
+		//}
 	}
 }
