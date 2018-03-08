@@ -286,3 +286,5 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/About/About.xml
+/Assemblies/Five_Second_Rule.dll
