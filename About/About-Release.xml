@@ -3,6 +3,13 @@
 	<name>Five Second Rule</name>
 	<author>Uuugggg</author>
 	<targetVersion>0.18.0</targetVersion>
-	<description>Deteriorated food/items that work just as well don't sell for less</description>
+	<description>Deteriorated food/items that work just as well as full HP don't sell for less.
+	
+	Now, this is crudely done by setting their HP to full if placed under a roof.
+
+	But their HP literally affects nothing other than market value. Why would traders get a discount on a low HP thing that works just the same at max HP?
+
+
+	Okay, maybe if a fire breaks out, not as many items will be destroyed. That is a case I'm not worried about.</description>
 	<url>https://steamcommunity.com/id/Uuugggg/myworkshopfiles/?appid=294100</url>
 </ModMetaData>
