@@ -26,7 +26,7 @@ namespace Five_Second_Rule
 
 		//public override string SettingsCategory()
 		//{
-		//	return "FiveSecondRule".Translate();
+		//	return "TD.FiveSecondRule".Translate();
 		//}
 	}
 }
