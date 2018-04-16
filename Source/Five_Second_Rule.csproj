@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="0Harmony, Version=1.0.9.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\ThirdParty\0Harmony.dll</HintPath>
+      <Private>True</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
