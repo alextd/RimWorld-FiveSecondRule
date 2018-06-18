@@ -32,9 +32,11 @@ namespace Five_Second_Rule
 		{
 			ThingDef def = __instance.def;
 
-			//Everything that doesn't use StatPart_Health ,
-			//except MarketValue since why is it worth less if it's not affected by it?
-			if (__instance.Position.Roofed(__instance.Map) && def.useHitPoints && !def.IsApparel && !def.IsCorpse && !def.IsWeapon)
+			//ignore everything that doesn't use StatPart_Health ,
+			//if the thing isn't deteriorating, set back to full hp
+			if (def.useHitPoints && !def.IsApparel && !def.IsCorpse && !def.IsWeapon
+				&& __instance.Position.Roofed(__instance.Map)
+				&& __instance.GetRoom(RegionType.Set_All) is Room room && !room.UsesOutdoorTemperature)
 			{
 				__instance.HitPoints = __instance.MaxHitPoints;
 			}
