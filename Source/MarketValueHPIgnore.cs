@@ -28,7 +28,7 @@ namespace Five_Second_Rule
 	[HarmonyPatch("SpawnSetup")]
 	public class ThingSpawn_Patch
 	{
-		public static void Postfix(Thing __instance)
+		public static void Postfix(Map map, Thing __instance)
 		{
 			ThingDef def = __instance.def;
 			//HitPoints only affects apparel/weapons,
@@ -38,7 +38,7 @@ namespace Five_Second_Rule
 				return;
 
 			//1.0 will be SteadyAtmosphereEffects.FinalDeteriorationRate(__instance) == 0.0f
-			if (__instance.GetSlotGroup()?.parent is Building_Storage || 
+			if (__instance.Position.GetSlotGroup(map)?.parent is Building_Storage || 
 				__instance.Spawned && !SteadyAtmosphereEffects.InDeterioratingPosition(__instance))
 			{
 				__instance.HitPoints = __instance.MaxHitPoints;
