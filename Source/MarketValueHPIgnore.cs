@@ -30,14 +30,14 @@ namespace Five_Second_Rule
 	{
 		public static void Postfix(Thing __instance)
 		{
-			if (__instance == null || __instance.Position == null || __instance.Map == null)
+			ThingDef def = __instance.def;
+			//HitPoints only affects apparel/weapons,
+			//so why does MarketValue care about HP if it has no effect?
+			if (!def.useHitPoints || def.IsApparel || def.IsWeapon || def.IsCorpse)
 				return;
 
-			ThingDef def = __instance.def;
-
-			//Everything that doesn't use StatPart_Health ,
-			//except MarketValue since why is it worth less if it's not affected by it?
-			if (__instance.Position.Roofed(__instance.Map) && def.useHitPoints && !def.IsApparel && !def.IsCorpse && !def.IsWeapon)
+			//1.0 will be SteadyAtmosphereEffects.FinalDeteriorationRate(__instance) == 0.0f
+			if (__instance.Spawned && !SteadyAtmosphereEffects.InDeterioratingPosition(__instance))
 			{
 				__instance.HitPoints = __instance.MaxHitPoints;
 			}
