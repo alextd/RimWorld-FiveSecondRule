@@ -30,6 +30,9 @@ namespace Five_Second_Rule
 	{
 		public static void Postfix(Thing __instance)
 		{
+			if (__instance == null || __instance.Position == null || __instance.Map == null)
+				return;
+
 			ThingDef def = __instance.def;
 
 			//Everything that doesn't use StatPart_Health ,
