@@ -33,11 +33,13 @@ namespace Five_Second_Rule
 			ThingDef def = __instance.def;
 			//HitPoints only affects apparel/weapons,
 			//so why does MarketValue care about HP if it has no effect?
+
 			if (!def.useHitPoints || def.IsApparel || def.IsWeapon || def.IsCorpse)
 				return;
 
 			//1.0 will be SteadyAtmosphereEffects.FinalDeteriorationRate(__instance) == 0.0f
-			if (__instance.Spawned && !SteadyAtmosphereEffects.InDeterioratingPosition(__instance))
+			if (__instance.GetSlotGroup()?.parent is Building_Storage || 
+				__instance.Spawned && !SteadyAtmosphereEffects.InDeterioratingPosition(__instance))
 			{
 				__instance.HitPoints = __instance.MaxHitPoints;
 			}
