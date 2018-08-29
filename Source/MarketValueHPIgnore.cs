@@ -63,4 +63,15 @@ namespace Five_Second_Rule
 			RestoreHPToSafeItem.Restore(__instance);
 		}
 	}
+
+	[HarmonyPatch(typeof(Thing))]
+	[HarmonyPatch("TryAbsorbStack")]
+	public class TryAbsorbStack_Patch
+	{
+		//public virtual bool TryAbsorbStack(Thing other, bool respectStackLimit)
+		public static void Postfix(Thing __instance)
+		{
+			RestoreHPToSafeItem.Restore(__instance);
+		}
+	}
 }
