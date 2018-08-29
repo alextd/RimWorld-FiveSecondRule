@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using Harmony;
 using RimWorld;
 using Verse;
@@ -72,6 +73,23 @@ namespace Five_Second_Rule
 		public static void Postfix(Thing __instance)
 		{
 			RestoreHPToSafeItem.Restore(__instance);
+		}
+	}
+
+	[HarmonyPatch(typeof(RoofGrid))]
+	[HarmonyPatch("SetRoof")]
+	public class SetRoof_Patch
+	{
+		//public void SetRoof(IntVec3 c, RoofDef def)
+		public static void Postfix(RoofGrid __instance, IntVec3 c, RoofDef def)
+		{
+			if (def == null) return;
+			Map map = (Map)AccessTools.Field(typeof(RoofGrid), "map").GetValue(__instance);
+			if (map == null || map.thingGrid == null) return;
+			foreach (Thing t in map.thingGrid.ThingsAt(c))
+			{
+				RestoreHPToSafeItem.Restore(t);
+			}
 		}
 	}
 }
