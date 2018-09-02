@@ -40,7 +40,7 @@ namespace Five_Second_Rule
 
 			//ignore everything that doesn't use StatPart_Health ,
 			//if the thing isn't deteriorating, set back to full hp
-			if (thing.Position.GetSlotGroup(map)?.parent is Building_Storage || 
+			if ((map != null && thing.Position.GetSlotGroup(map)?.parent is Building_Storage) || 
 				SteadyEnvironmentEffects.FinalDeteriorationRate(thing) == 0.0f)
 			{
 				thing.HitPoints = thing.MaxHitPoints;
