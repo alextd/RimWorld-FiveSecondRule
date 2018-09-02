@@ -91,7 +91,7 @@ namespace Five_Second_Rule
 		{
 			if (def == null) return;
 			Map map = (Map)AccessTools.Field(typeof(RoofGrid), "map").GetValue(__instance);
-			if (map == null || map.thingGrid == null) return;
+			if (map == null || map.thingGrid == null || !map.regionAndRoomUpdater.Enabled) return;
 			foreach (Thing t in map.thingGrid.ThingsAt(c))
 			{
 				RestoreHPToSafeItem.Restore(t, map);
