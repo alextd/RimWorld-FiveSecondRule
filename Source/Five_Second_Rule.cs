@@ -15,7 +15,7 @@ namespace Five_Second_Rule
 			HarmonyInstance.DEBUG = true;
 #endif
 			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.Five_Second_Rule.main");
-			harmony.PatchAll(Assembly.GetExecutingAssembly());
+			harmony.PatchAll();
 		}
 
 		//public override void DoSettingsWindowContents(Rect inRect)
