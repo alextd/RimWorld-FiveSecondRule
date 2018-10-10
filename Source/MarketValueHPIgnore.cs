@@ -87,11 +87,14 @@ namespace Five_Second_Rule
 	public class SetRoof_Patch
 	{
 		//public void SetRoof(IntVec3 c, RoofDef def)
-		public static void Postfix(RoofGrid __instance, IntVec3 c, RoofDef def)
+		public static void Postfix(RoofGrid __instance, IntVec3 c, RoofDef def, Map ___map)
 		{
 			if (def == null) return;
-			Map map = (Map)AccessTools.Field(typeof(RoofGrid), "map").GetValue(__instance);
+
+			Map map = ___map;
+
 			if (map == null || map.thingGrid == null || !map.regionAndRoomUpdater.Enabled) return;
+
 			foreach (Thing t in map.thingGrid.ThingsAt(c))
 			{
 				RestoreHPToSafeItem.Restore(t, map);
