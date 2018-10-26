@@ -101,4 +101,19 @@ namespace Five_Second_Rule
 			}
 		}
 	}
+
+	[HarmonyPatch(typeof(Room), "Notify_RoomShapeOrContainedBedsChanged")]
+	public class NewRoom_Patch
+	{
+		//public void Notify_RoomShapeOrContainedBedsChanged()
+		public static void Postfix(Room __instance)
+		{
+			Map map = __instance.Map;
+
+			foreach (Thing t in __instance.ContainedAndAdjacentThings)
+			{
+				RestoreHPToSafeItem.Restore(t, map);
+			}
+		}
+	}
 }
