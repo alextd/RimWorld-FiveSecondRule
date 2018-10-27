@@ -109,6 +109,7 @@ namespace Five_Second_Rule
 		//public void Notify_RoomShapeOrContainedBedsChanged()
 		public static void Postfix(Room __instance)
 		{
+			if (__instance.UsesOutdoorTemperature) return;
 			Map map = __instance.Map;
 
 			foreach (Thing t in __instance.ContainedAndAdjacentThings)
