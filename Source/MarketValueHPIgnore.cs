@@ -35,7 +35,7 @@ namespace Five_Second_Rule
 			//HitPoints only affects apparel/weapons,
 			//so why does MarketValue care about HP if it has no effect?
 
-			if (!def.useHitPoints || def.IsApparel || def.IsWeapon || def.IsCorpse)
+			if (!def.CanEverDeteriorate || def == ThingDefOf.BurnedTree || def.IsApparel || def.IsWeapon || def.IsCorpse)
 				return;
 
 			//ignore everything that doesn't use StatPart_Health ,
@@ -43,6 +43,7 @@ namespace Five_Second_Rule
 			if ((map != null && thing.Position != null && thing.Position.GetSlotGroup(map)?.parent is Building_Storage) || 
 				SteadyEnvironmentEffects.FinalDeteriorationRate(thing) == 0.0f)
 			{
+				if(thing.HitPoints != thing.MaxHitPoints) Log.Message($"5-sec Rule Restored {thing}");
 				thing.HitPoints = thing.MaxHitPoints;
 			}
 		}
