@@ -2,7 +2,9 @@
 <ModMetaData>
 	<name>Five Second Rule</name>
 	<author>Uuugggg</author>
-	<targetVersion>1.0.0</targetVersion>
+	<supportedVersions>
+		<li>1.0.0</li>
+	</supportedVersions>
 	<description>Deteriorated food/items that work just as well as full HP don't sell for less.
 	
 Now, this is crudely done by setting their HP to full if placed under an indoor roof.
