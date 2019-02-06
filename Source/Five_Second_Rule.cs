@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Linq;
 using Verse;
 using UnityEngine;
 using Harmony;
@@ -18,9 +19,10 @@ namespace Five_Second_Rule
 			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.Five_Second_Rule.main");
 
 			//Turn off DefOf warning since harmony patches trigger it.
-			harmony.Patch(AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor"),
-				new HarmonyMethod(typeof(Mod), "EnsureInitializedInCtorPrefix"), null);
-			
+			MethodInfo DefOfHelperInfo = AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor");
+			if (!harmony.GetPatchedMethods().Contains(DefOfHelperInfo))
+				harmony.Patch(DefOfHelperInfo, new HarmonyMethod(typeof(Mod), "EnsureInitializedInCtorPrefix"), null);
+
 			harmony.PatchAll();
 		}
 
