@@ -61,6 +61,7 @@ namespace Five_Second_Rule
 		}
 	}
 
+	/* This is another occurence of the "Mac/Linux crashes when patching a virtual, empty method"
 	[HarmonyPatch(typeof(Thing))]
 	[HarmonyPatch("PostMapInit")]
 	public class PostMapInit_Patch
@@ -70,7 +71,21 @@ namespace Five_Second_Rule
 		{
 			RestoreHPToSafeItem.Restore(__instance);
 		}
+	}*/
+
+	//Instead, patch where it is called:
+	[HarmonyPatch(typeof(Map))]
+	[HarmonyPatch("FinalizeInit")]
+	public class Call_PostMapInit_Patch
+	{
+		//actually instead of transpiling the PostMapInit call, just do the same loop with this postfix
+		public static void Postfix(Map __instance)
+		{
+			foreach (Thing current in __instance.listerThings.AllThings.ToList<Thing>())
+				RestoreHPToSafeItem.Restore(current);
+		}
 	}
+
 
 	[HarmonyPatch(typeof(Thing))]
 	[HarmonyPatch("TryAbsorbStack")]
