@@ -18,18 +18,7 @@ namespace Five_Second_Rule
 #endif
 			Harmony harmony = new Harmony("Uuugggg.rimworld.Five_Second_Rule.main");
 
-			//Turn off DefOf warning since harmony patches trigger it.
-			MethodInfo DefOfHelperInfo = AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor");
-			if (!harmony.GetPatchedMethods().Contains(DefOfHelperInfo))
-				harmony.Patch(DefOfHelperInfo, new HarmonyMethod(typeof(Mod), "EnsureInitializedInCtorPrefix"), null);
-
 			harmony.PatchAll();
-		}
-
-		public static bool EnsureInitializedInCtorPrefix()
-		{
-			//No need to display this warning.
-			return false;
 		}
 
 		//public override void DoSettingsWindowContents(Rect inRect)
