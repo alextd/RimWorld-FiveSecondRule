@@ -118,16 +118,16 @@ namespace Five_Second_Rule
 		}
 	}
 
-	[HarmonyPatch(typeof(Room), "Notify_RoomShapeOrContainedBedsChanged")]
+	[HarmonyPatch(typeof(District), "Notify_RoomShapeOrContainedBedsChanged")]
 	public class NewRoom_Patch
 	{
 		//public void Notify_RoomShapeOrContainedBedsChanged()
-		public static void Postfix(Room __instance)
+		public static void Postfix(District __instance)
 		{
-			if (__instance.Group != null && __instance.UsesOutdoorTemperature) return;
+			if ( __instance.Room.UsesOutdoorTemperature) return;
 			Map map = __instance.Map;
 
-			foreach (Thing t in __instance.ContainedAndAdjacentThings)
+			foreach (Thing t in __instance.Room.ContainedAndAdjacentThings)
 			{
 				RestoreHPToSafeItem.Restore(t, map);
 			}
