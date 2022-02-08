@@ -6,14 +6,9 @@ using RimWorld;
 
 namespace Five_Second_Rule
 {
-	class Settings : ModSettings
+	public class Settings : ModSettings
 	{
 		public bool setting;
-
-		public static Settings Get()
-		{
-			return LoadedModManager.GetMod<Five_Second_Rule.Mod>().GetSettings<Settings>();
-		}
 
 		public void DoWindowContents(Rect wrect)
 		{
