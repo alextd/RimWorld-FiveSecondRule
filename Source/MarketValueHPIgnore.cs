@@ -35,7 +35,9 @@ namespace Five_Second_Rule
 			//HitPoints only affects apparel/weapons,
 			//so why does MarketValue care about HP if it has no effect?
 
-			if (!def.CanEverDeteriorate || def == ThingDefOf.BurnedTree || def.IsApparel || def.IsWeapon || def.IsCorpse)
+			// skip DeadPlant because it's the only plant that can supposedly deteriorate
+			// skip other items because their health actually matters to their use.
+			if (!def.CanEverDeteriorate || def.thingClass == typeof(DeadPlant) || def.IsApparel || def.IsWeapon || def.IsCorpse)
 				return;
 
 			//ignore everything that doesn't use StatPart_Health ,
